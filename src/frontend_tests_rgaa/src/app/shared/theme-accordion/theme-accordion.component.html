@@ -1,0 +1,9 @@
+<section class="theme">
+  <h2><button type="button" (click)="expanded.set(!expanded())" [attr.aria-expanded]="expanded()" [attr.aria-controls]="'theme-'+theme.id">
+    <span><span class="number">{{ theme.id }}</span>{{ theme.name }}</span><span class="toggle" aria-hidden="true">{{ expanded() ? '−' : '+' }}</span>
+  </button></h2>
+  @if (expanded()) { <div class="content" [id]="'theme-'+theme.id">
+    @if (theme.criteria.length) { @for (criterion of theme.criteria; track criterion.id) { <app-criterion-accordion [criterion]="criterion" /> } }
+    @else { <p>Les critères officiels de cette thématique seront importés prochainement.</p> }
+  </div> }
+</section>

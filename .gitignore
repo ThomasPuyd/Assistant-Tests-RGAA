@@ -1,0 +1,17 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+.pnpm-store/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

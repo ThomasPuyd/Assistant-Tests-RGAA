@@ -1,0 +1,43 @@
+.theme {
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: .42rem;
+  overflow: hidden;
+  background: #fff;
+}
+
+h2 { margin: 0; font-size: .94rem; }
+
+h2 button {
+  display: flex;
+  width: 100%;
+  min-height: 2.08rem;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  padding: .28rem .55rem;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: left;
+  cursor: pointer;
+}
+
+h2 button:hover { background: #ececfe; }
+
+.number {
+  display: inline-grid;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-right: .5rem;
+  place-items: center;
+  border-radius: .25rem;
+  background: var(--primary);
+  color: #fff;
+  font-size: .78rem;
+}
+
+.toggle { font-size: 1.1rem; line-height: 1; }
+.content > p { margin: 0; padding: .55rem .7rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }

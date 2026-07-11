@@ -1,0 +1,25 @@
+<header class="app-header">
+  <div class="brand">
+    <div class="logo-wrapper">
+      <img src="/logo.gif" alt="Logo Tests RGAA" />
+    </div>
+    <h1 class="title">Assistant Tests RGAA</h1>
+  </div>
+
+  <nav class="header-actions" aria-label="Navigation principale">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-icon"
+      aria-label="Accueil"
+      title="Accueil"
+    >
+      <img src="/icons/home.svg" alt="" class="icon icon-default" />
+      <img src="/icons/home2.svg" alt="" class="icon icon-hover" />
+    </a>
+    <a class="swagger-link" href="http://localhost:4212" target="_blank" rel="noopener">
+      Swagger
+    </a>
+  </nav>
+</header>

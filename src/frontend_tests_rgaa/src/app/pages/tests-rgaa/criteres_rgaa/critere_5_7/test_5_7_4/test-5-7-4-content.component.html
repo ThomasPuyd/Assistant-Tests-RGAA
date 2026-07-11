@@ -1,0 +1,48 @@
+<div class="test-content">
+  <div class="rule">
+    <h2>Règle du test 5.7.4</h2>
+    <p>Chaque cellule <code>&lt;td&gt;</code> ou <code>&lt;th&gt;</code> associée à des en-têtes possédant un <code>id</code> doit avoir un attribut <code>headers</code> contenant la liste exacte des identifiants de ces en-têtes.</p>
+  </div>
+
+  <h2>Éléments à auditer</h2>
+  <p>Les sept tableaux sont réellement présents dans le DOM. Le premier est conforme ; les six suivants contiennent une erreur dans l’association de la cellule de données avec ses en-têtes.</p>
+
+  <div class="examples">
+    @for (example of examples; track example.title; let index = $index) {
+      <article class="example" [class.valid]="example.compliant" [class.invalid]="!example.compliant">
+        <header>
+          <p class="example-number">Exemple {{ index + 1 }}</p>
+          <h3>{{ example.title }}</h3>
+          <span class="verdict"><span aria-hidden="true">{{ example.compliant ? '✓' : '✕' }}</span> {{ example.compliant ? 'Conforme' : 'Non conforme' }}</span>
+        </header>
+
+        <div class="fixture">
+          @switch (index) {
+            @case (0) {
+              <table><caption>Chiffre d’affaires — exemple conforme</caption><thead><tr><td></td><th id="ca-1" scope="col">Chiffre d’affaires</th></tr></thead><tbody><tr><th id="t1-1" scope="row">Premier trimestre</th><td headers="t1-1 ca-1">125 000 €</td></tr></tbody></table>
+            }
+            @case (1) {
+              <table><caption>Chiffre d’affaires — headers absent</caption><thead><tr><td></td><th id="ca-2" scope="col">Chiffre d’affaires</th></tr></thead><tbody><tr><th id="t1-2" scope="row">Premier trimestre</th><td>125 000 €</td></tr></tbody></table>
+            }
+            @case (2) {
+              <table><caption>Chiffre d’affaires — headers vide</caption><thead><tr><td></td><th id="ca-3" scope="col">Chiffre d’affaires</th></tr></thead><tbody><tr><th id="t1-3" scope="row">Premier trimestre</th><td headers="">125 000 €</td></tr></tbody></table>
+            }
+            @case (3) {
+              <table><caption>Chiffre d’affaires — identifiants inexistants</caption><thead><tr><td></td><th id="ca-4" scope="col">Chiffre d’affaires</th></tr></thead><tbody><tr><th id="t1-4" scope="row">Premier trimestre</th><td headers="trimestre-inexistant ca-inexistant">125 000 €</td></tr></tbody></table>
+            }
+            @case (4) {
+              <table><caption>Chiffre d’affaires — en-tête oublié</caption><thead><tr><td></td><th id="ca-5" scope="col">Chiffre d’affaires</th></tr></thead><tbody><tr><th id="t1-5" scope="row">Premier trimestre</th><td headers="t1-5">125 000 €</td></tr></tbody></table>
+            }
+            @case (5) {
+              <table><caption>Chiffre d’affaires — identifiant erroné</caption><thead><tr><td></td><th id="ca-6" scope="col">Chiffre d’affaires</th></tr></thead><tbody><tr><th id="t1-6" scope="row">Premier trimestre</th><td headers="t1-6 cas-6">125 000 €</td></tr></tbody></table>
+            }
+            @case (6) {
+              <table><caption>Chiffre d’affaires — libellés à la place des id</caption><thead><tr><td></td><th id="ca-7" scope="col">Chiffre d’affaires</th></tr></thead><tbody><tr><th id="t1-7" scope="row">Premier trimestre</th><td headers="Premier trimestre Chiffre d’affaires">125 000 €</td></tr></tbody></table>
+            }
+          }
+        </div>
+        <p>{{ example.explanation }}</p>
+      </article>
+    }
+  </div>
+</div>

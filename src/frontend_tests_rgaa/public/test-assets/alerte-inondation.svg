@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280">
+  <rect width="600" height="280" fill="#dbeeff"/><path d="M0 175 Q75 125 150 175 T300 175 T450 175 T600 175 V280 H0Z" fill="#0063cb"/>
+  <path d="M300 30 470 230H130Z" fill="#ffca00" stroke="#161616" stroke-width="10"/><text x="300" y="190" text-anchor="middle" font-size="130" font-family="sans-serif" font-weight="bold">!</text>
+</svg>

@@ -1,0 +1,37 @@
+<div class="test-content">
+  <div class="rule">
+    <h2>Règle du test 2.1.1</h2>
+    <p>Chaque cadre, créé avec une balise <code>&lt;iframe&gt;</code> ou <code>&lt;frame&gt;</code>, doit posséder un attribut <code>title</code>.</p>
+  </div>
+
+  <h2>Éléments à auditer</h2>
+  <p>Les sept cadres ci-dessous sont de véritables balises <code>&lt;iframe&gt;</code> présentes dans le DOM. Le premier est conforme ; les six suivants sont volontairement dépourvus d’attribut <code>title</code>.</p>
+
+  <div class="examples">
+    @for (example of examples; track example.title; let index = $index) {
+      <article class="example" [class.valid]="example.compliant" [class.invalid]="!example.compliant">
+        <header>
+          <p class="example-number">Exemple {{ index + 1 }}</p>
+          <h3>{{ example.title }}</h3>
+          <span class="verdict"><span aria-hidden="true">{{ example.compliant ? '✓' : '✕' }}</span> {{ example.compliant ? 'Conforme' : 'Non conforme' }}</span>
+        </header>
+
+        <div class="fixture">
+          @switch (index) {
+            @case (0) { <iframe src="/test-assets/cadre-contenu.html" title="Présentation du service Qualit'RGAA"></iframe> }
+            @case (1) { <iframe src="/test-assets/cadre-contenu.html"></iframe> }
+            @case (2) { <iframe src="/test-assets/cadre-contenu.html" aria-label="Présentation du service Qualit'RGAA"></iframe> }
+            @case (3) { <iframe src="/test-assets/cadre-contenu.html" name="presentation-service"></iframe> }
+            @case (4) { <iframe src="/test-assets/cadre-contenu.html" data-title="Présentation du service Qualit'RGAA"></iframe> }
+            @case (5) {
+              <p id="libelle-cadre">Présentation du service Qualit'RGAA</p>
+              <iframe src="/test-assets/cadre-contenu.html" aria-labelledby="libelle-cadre"></iframe>
+            }
+            @case (6) { <iframe src="/test-assets/cadre-contenu.html" tooltip="Présentation du service Qualit'RGAA"></iframe> }
+          }
+        </div>
+        <p>{{ example.explanation }}</p>
+      </article>
+    }
+  </div>
+</div>

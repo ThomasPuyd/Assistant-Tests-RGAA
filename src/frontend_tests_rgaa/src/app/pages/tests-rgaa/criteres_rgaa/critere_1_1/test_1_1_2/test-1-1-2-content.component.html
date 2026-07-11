@@ -1,0 +1,55 @@
+<div class="test-content">
+  <div class="rule">
+    <h2>Règle du test 1.1.2</h2>
+    <p>Chaque zone <code>&lt;area&gt;</code> porteuse d’information doit posséder une alternative textuelle dans un attribut <code>alt</code> ou <code>aria-label</code>.</p>
+  </div>
+
+  <h2>Éléments à auditer</h2>
+  <p>Chaque carte contient une véritable image réactive et une véritable balise <code>&lt;area&gt;</code>. Le premier cas est conforme ; les six suivants sont volontairement non conformes.</p>
+
+  <div class="examples">
+    @for (example of examples; track example.title; let index = $index) {
+      <article class="example" [class.valid]="example.compliant" [class.invalid]="!example.compliant">
+        <header>
+          <p class="example-number">Exemple {{ index + 1 }}</p>
+          <h3>{{ example.title }}</h3>
+          <span class="verdict"><span aria-hidden="true">{{ example.compliant ? '✓' : '✕' }}</span> {{ example.compliant ? 'Conforme' : 'Non conforme' }}</span>
+        </header>
+
+        <div class="fixture">
+          @switch (index) {
+            @case (0) {
+              <img src="/test-assets/plan-acces.svg" alt="Plan des services du bâtiment" usemap="#plan-conforme">
+              <map name="plan-conforme"><area shape="circle" coords="460,135,45" href="/tests/1-1-2#accueil" alt="Accéder à l’accueil"></map>
+            }
+            @case (1) {
+              <img src="/test-assets/plan-acces.svg" alt="Plan des services du bâtiment" usemap="#plan-sans-alt">
+              <map name="plan-sans-alt"><area shape="circle" coords="460,135,45" href="/tests/1-1-2#secretariat"></map>
+            }
+            @case (2) {
+              <img src="/test-assets/plan-acces.svg" alt="Plan des services du bâtiment" usemap="#plan-alt-vide">
+              <map name="plan-alt-vide"><area shape="circle" coords="460,135,45" href="/tests/1-1-2#cafeteria" alt=""></map>
+            }
+            @case (3) {
+              <img src="/test-assets/plan-acces.svg" alt="Plan des services du bâtiment" usemap="#plan-aria-vide">
+              <map name="plan-aria-vide"><area shape="circle" coords="460,135,45" href="/tests/1-1-2#ascenseur" aria-label=""></map>
+            }
+            @case (4) {
+              <img src="/test-assets/plan-acces.svg" alt="Plan des services du bâtiment" usemap="#plan-alt-espaces">
+              <map name="plan-alt-espaces"><area shape="circle" coords="460,135,45" href="/tests/1-1-2#sortie" alt="   "></map>
+            }
+            @case (5) {
+              <img src="/test-assets/plan-acces.svg" alt="Plan des services du bâtiment" usemap="#plan-aria-espaces">
+              <map name="plan-aria-espaces"><area shape="circle" coords="460,135,45" href="/tests/1-1-2#parking" aria-label="   "></map>
+            }
+            @case (6) {
+              <img src="/test-assets/plan-acces.svg" alt="Plan des services du bâtiment" usemap="#plan-title-seul">
+              <map name="plan-title-seul"><area shape="circle" coords="460,135,45" href="/tests/1-1-2#toilettes" title="Accéder aux toilettes"></map>
+            }
+          }
+        </div>
+        <p>{{ example.explanation }}</p>
+      </article>
+    }
+  </div>
+</div>

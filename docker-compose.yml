@@ -1,0 +1,17 @@
+name: tests-rgaa
+
+services:
+  frontend:
+    container_name: frontend-tests-rgaa
+    build:
+      context: ./src/frontend_tests_rgaa
+      dockerfile: Dockerfile
+    ports:
+      - "4212:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped

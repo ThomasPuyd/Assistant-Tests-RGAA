@@ -1,0 +1,6 @@
+<div class="criterion">
+  <h3><button type="button" (click)="expanded.set(!expanded())" [attr.aria-expanded]="expanded()" [attr.aria-controls]="'criterion-'+criterion.id.replace('.', '-')">
+    <span>{{ criterion.title }}</span><span aria-hidden="true">{{ expanded() ? '−' : '+' }}</span>
+  </button></h3>
+  @if (expanded()) { <ul [id]="'criterion-'+criterion.id.replace('.', '-')">@for (test of criterion.tests; track test.id) { <li><app-test-link [test]="test" /></li> }</ul> }
+</div>
