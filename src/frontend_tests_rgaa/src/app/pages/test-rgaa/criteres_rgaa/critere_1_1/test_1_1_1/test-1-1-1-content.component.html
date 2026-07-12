@@ -1,0 +1,50 @@
+<div class="test-content">
+  <div class="rule">
+    <h2>Règle du test 1.1.1</h2>
+    <p>Chaque image porteuse d’information, qu’il s’agisse d’une balise <code>&lt;img&gt;</code> ou d’un élément possédant <code>role="img"</code>, doit avoir une alternative textuelle.</p>
+  </div>
+
+  <h2>Éléments à auditer</h2>
+  <p>Les éléments ci-dessous sont réellement présents dans le DOM. Le premier est conforme ; les six suivants sont volontairement non conformes pour permettre leur détection par un outil d’audit.</p>
+
+  <div class="examples">
+    @for (example of examples; track example.title; let index = $index) {
+      <article class="example" [class.valid]="example.compliant" [class.invalid]="!example.compliant">
+        <header>
+          <p class="example-number">Exemple {{ index + 1 }}</p>
+          <h3>{{ example.title }}</h3>
+          <span class="verdict">
+            <span aria-hidden="true">{{ example.compliant ? '✓' : '✕' }}</span>
+            {{ example.compliant ? 'Conforme' : 'Non conforme' }}
+          </span>
+        </header>
+        <div class="fixture">
+          @switch (index) {
+            @case (0) {
+              <img src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_1/assets/equipe-projet.svg" alt="L’équipe projet réunie autour d’une table">
+            }
+            @case (1) {
+              <img src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_1/assets/alerte-inondation.svg">
+            }
+            @case (2) {
+              <img src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_1/assets/plan-acces.svg" alt="">
+            }
+            @case (3) {
+              <img src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_1/assets/resultats-2026.svg" alt="resultats-2026.svg">
+            }
+            @case (4) {
+              <img src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_1/assets/graphique-frequentation.svg" alt="Image">
+            }
+            @case (5) {
+              <span role="img" class="icone-alerte"></span>
+            }
+            @case (6) {
+              <div role="img" aria-labelledby="description-absente" class="schema-resultats"></div>
+            }
+          }
+        </div>
+        <p>{{ example.explanation }}</p>
+      </article>
+    }
+  </div>
+</div>

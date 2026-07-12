@@ -1,0 +1,48 @@
+<div class="test-content">
+  <div class="rule">
+    <h2>Règle du test 1.1.3</h2>
+    <p>Chaque bouton <code>&lt;input type="image"&gt;</code> doit posséder une alternative textuelle fournie par <code>alt</code>, <code>aria-label</code>, <code>aria-labelledby</code> ou <code>title</code>.</p>
+  </div>
+
+  <h2>Éléments à auditer</h2>
+  <p>Les sept boutons images ci-dessous sont réellement présents dans le DOM. Le premier est conforme ; les six suivants sont volontairement non conformes.</p>
+
+  <div class="examples">
+    @for (example of examples; track example.title; let index = $index) {
+      <article class="example" [class.valid]="example.compliant" [class.invalid]="!example.compliant">
+        <header>
+          <p class="example-number">Exemple {{ index + 1 }}</p>
+          <h3>{{ example.title }}</h3>
+          <span class="verdict"><span aria-hidden="true">{{ example.compliant ? '✓' : '✕' }}</span> {{ example.compliant ? 'Conforme' : 'Non conforme' }}</span>
+        </header>
+
+        <div class="fixture">
+          @switch (index) {
+            @case (0) {
+              <input type="image" src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_3/assets/bouton-envoyer.svg" alt="Envoyer le formulaire" (click)="$event.preventDefault()">
+            }
+            @case (1) {
+              <input type="image" src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_3/assets/bouton-envoyer.svg" (click)="$event.preventDefault()">
+            }
+            @case (2) {
+              <input type="image" src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_3/assets/bouton-envoyer.svg" alt="" (click)="$event.preventDefault()">
+            }
+            @case (3) {
+              <input type="image" src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_3/assets/bouton-envoyer.svg" aria-label="" (click)="$event.preventDefault()">
+            }
+            @case (4) {
+              <input type="image" src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_3/assets/bouton-envoyer.svg" aria-labelledby="libelle-bouton-absent" (click)="$event.preventDefault()">
+            }
+            @case (5) {
+              <input type="image" src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_3/assets/bouton-envoyer.svg" title="" (click)="$event.preventDefault()">
+            }
+            @case (6) {
+              <input type="image" src="/test-rgaa/criteres_rgaa/critere_1_1/test_1_1_3/assets/bouton-envoyer.svg" alt="   " aria-label="   " title="   " (click)="$event.preventDefault()">
+            }
+          }
+        </div>
+        <p>{{ example.explanation }}</p>
+      </article>
+    }
+  </div>
+</div>

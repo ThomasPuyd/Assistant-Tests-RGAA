@@ -1,6 +1,6 @@
 # Frontend Tests RGAA
 
-Frontend Angular 18 de l'application `Assistant Tests RGAA`.
+Frontend Angular de l'application `Assistant Tests RGAA`.
 
 ## Commandes
 
@@ -17,26 +17,27 @@ npm test
 
 ```text
 src/app/
-?? data/                  # Catalogue RGAA utilis? par le tableau de bord
-?? layout/                # App header/main/footer et logo
-?? pages/
-?   ?? dashboard/         # Vue de synth?se
-?   ?? method/            # Documentation d'utilisation
-?   ?? test/              # Route dynamique /tests/:testId
-?   ?? tests-rgaa/
-?       ?? criteres_rgaa/ # Pages de recette, miroir des scripts Assistant RGAA
-?? shared/                # Accord?ons, badges, liens, fil d'Ariane
+├── data/                  # Catalogue RGAA utilisé par l'accueil
+├── layout/                # App header/main/footer et logo
+├── core/
+│   ├── home/              # Accueil, recherche et liste des tests
+│   └── shared/            # Accordéons, badges, liens, fil d'Ariane
+└── pages/
+    └── test-rgaa/
+        ├── test-page.component.*
+        └── criteres_rgaa/ # Pages de recette, miroir des scripts Assistant RGAA
 ```
 
-## Convention de cr?ation d'un test
+## Convention de création d'un test
 
-Pour un test RGAA `X.Y.Z`, cr?er :
+Pour un test RGAA `X.Y.Z`, créer :
 
 ```text
-src/app/pages/tests-rgaa/criteres_rgaa/critere_X_Y/test_X_Y_Z/
-?? test-X-Y-Z-content.component.ts
-?? test-X-Y-Z-content.component.html
-?? test-X-Y-Z-content.component.css
+src/app/pages/test-rgaa/criteres_rgaa/critere_X_Y/test_X_Y_Z/
+├── assets/                                # Images/fichiers utilisés par ce test
+├── test-X-Y-Z-content.component.ts
+├── test-X-Y-Z-content.component.html
+└── test-X-Y-Z-content.component.css
 ```
 
 Cette convention fait le lien direct avec le script backend `Assistant-Audit-RGAA` :
@@ -45,4 +46,4 @@ Cette convention fait le lien direct avec le script backend `Assistant-Audit-RGA
 RGAA/src/backend_rgaa/scripts/criteres_rgaa/critere_X_Y/test_X_Y_Z.py
 ```
 
-La page dynamique `src/app/pages/test/test-page.component.ts` reste le point d'entr?e Angular qui choisit le composant de recette ? afficher selon `/tests/:testId`.
+La page dynamique `src/app/pages/test-rgaa/test-page.component.ts` reste le point d'entrée Angular qui choisit le composant de recette à afficher selon `/tests/:testId`.

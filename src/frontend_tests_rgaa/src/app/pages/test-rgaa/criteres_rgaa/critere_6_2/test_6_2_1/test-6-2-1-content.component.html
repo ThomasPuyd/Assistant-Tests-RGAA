@@ -1,0 +1,37 @@
+<div class="test-content">
+  <div class="rule">
+    <h2>Règle du test 6.2.1</h2>
+    <p>Chaque lien doit contenir, entre <code>&lt;a&gt;</code> et <code>&lt;/a&gt;</code>, un intitulé constitué d’un texte ou d’une alternative accessible.</p>
+  </div>
+
+  <h2>Éléments à auditer</h2>
+  <p>Les sept liens sont réellement présents dans le DOM. Le premier est conforme ; les six suivants ne possèdent aucun intitulé exploitable.</p>
+
+  <div class="examples">
+    @for (example of examples; track example.title; let index = $index) {
+      <article class="example" [class.valid]="example.compliant" [class.invalid]="!example.compliant">
+        <header>
+          <p class="example-number">Exemple {{ index + 1 }}</p>
+          <h3>{{ example.title }}</h3>
+          <span class="verdict"><span aria-hidden="true">{{ example.compliant ? '✓' : '✕' }}</span> {{ example.compliant ? 'Conforme' : 'Non conforme' }}</span>
+        </header>
+
+        <div class="fixture">
+          @switch (index) {
+            @case (0) { <a href="#destination-6-2-1">Consulter les résultats de l’audit</a> }
+            @case (1) { <a href="#destination-6-2-1"></a> }
+            @case (2) { <a href="#destination-6-2-1">   </a> }
+            @case (3) { <a href="#destination-6-2-1"><img src="/test-rgaa/criteres_rgaa/critere_6_2/test_6_2_1/assets/qualit-rgaa-favicon.svg" alt=""></a> }
+            @case (4) { <a href="#destination-6-2-1"><span aria-hidden="true">Consulter les résultats</span></a> }
+            @case (5) { <a href="#destination-6-2-1"><span role="img" class="link-icon"></span></a> }
+            @case (6) {
+              <a href="#destination-6-2-1"><svg aria-hidden="true" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"></circle><path d="m14 24 7 7 14-15"></path></svg></a>
+            }
+          }
+        </div>
+        <p>{{ example.explanation }}</p>
+      </article>
+    }
+  </div>
+  <span id="destination-6-2-1" tabindex="-1">Destination des liens de démonstration</span>
+</div>

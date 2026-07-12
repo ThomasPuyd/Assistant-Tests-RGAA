@@ -49,6 +49,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*.{svg,html,png,jpg,jpeg,gif,webp}",
+                "input": "src/app/pages/test-rgaa",
+                "output": "test-rgaa"
               }
             ],
             "styles": [
@@ -107,6 +112,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*.{svg,html,png,jpg,jpeg,gif,webp}",
+                "input": "src/app/pages/test-rgaa",
+                "output": "test-rgaa"
               }
             ],
             "styles": [
