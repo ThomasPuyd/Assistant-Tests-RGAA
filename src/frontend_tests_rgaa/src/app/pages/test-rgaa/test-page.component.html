@@ -1,5 +1,4 @@
 @if (locatedTest(); as located) {
-  <app-breadcrumb [items]="breadcrumbs(located)" />
   <article class="test-page">
     <header><p class="eyebrow">{{ located.theme.name }} · {{ located.criterion.title }}</p><div class="title-row"><h1>{{ located.test.title }}</h1><app-status-badge [status]="located.test.status" /></div></header>
     <dl><div><dt>Thématique</dt><dd>{{ located.theme.name }}</dd></div><div><dt>Critère</dt><dd>{{ located.criterion.id }}</dd></div></dl>
@@ -25,8 +24,7 @@
       <div>@if (previous(); as previousTest) { <a [routerLink]="['/tests', previousTest.test.slug]"><span>← Test précédent</span><strong>{{ previousTest.test.id }}</strong></a> }</div>
       <div>@if (next(); as nextTest) { <a [routerLink]="['/tests', nextTest.test.slug]" class="next"><span>Test suivant →</span><strong>{{ nextTest.test.id }}</strong></a> }</div>
     </nav>
-    <a routerLink="/">← Revenir au tableau de bord</a>
   </article>
 } @else {
-  <article class="error-page"><p class="eyebrow">Erreur</p><h1>Test introuvable</h1><p>Le test « {{ requestedId() }} » n’existe pas dans les données actuellement chargées.</p><a class="button" routerLink="/">Revenir au tableau de bord</a></article>
+  <article class="error-page"><p class="eyebrow">Erreur</p><h1>Test introuvable</h1><p>Le test « {{ requestedId() }} » n’existe pas dans les données actuellement chargées.</p></article>
 }

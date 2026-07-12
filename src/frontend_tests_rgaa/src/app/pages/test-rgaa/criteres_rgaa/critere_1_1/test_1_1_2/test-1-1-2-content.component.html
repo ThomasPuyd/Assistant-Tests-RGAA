@@ -9,12 +9,12 @@
 
   <div class="examples">
     @for (example of examples; track example.title; let index = $index) {
-      <article class="example" [class.valid]="example.compliant" [class.invalid]="!example.compliant">
-        <header>
+      <details class="example" [class.valid]="example.compliant" [class.invalid]="!example.compliant">
+        <summary>
           <p class="example-number">Exemple {{ index + 1 }}</p>
           <h3>{{ example.title }}</h3>
           <span class="verdict"><span aria-hidden="true">{{ example.compliant ? '✓' : '✕' }}</span> {{ example.compliant ? 'Conforme' : 'Non conforme' }}</span>
-        </header>
+        </summary>
 
         <div class="fixture">
           @switch (index) {
@@ -49,7 +49,7 @@
           }
         </div>
         <p>{{ example.explanation }}</p>
-      </article>
+      </details>
     }
   </div>
 </div>
