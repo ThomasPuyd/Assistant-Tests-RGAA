@@ -21,8 +21,8 @@
       }
     </section>
     <nav class="test-navigation" aria-label="Navigation entre les tests">
-      <div>@if (previous(); as previousTest) { <a [routerLink]="['/tests', previousTest.test.slug]"><span>← Test précédent</span><strong>{{ previousTest.test.id }}</strong></a> }</div>
-      <div>@if (next(); as nextTest) { <a [routerLink]="['/tests', nextTest.test.slug]" class="next"><span>Test suivant →</span><strong>{{ nextTest.test.id }}</strong></a> }</div>
+      <div>@if (previous(); as previousTest) { <a [href]="'/tests/' + previousTest.test.slug" target="_blank" rel="noopener"><span>← Test précédent</span><strong>{{ previousTest.test.id }}</strong></a> }</div>
+      <div>@if (next(); as nextTest) { <a [href]="'/tests/' + nextTest.test.slug" target="_blank" rel="noopener" class="next"><span>Test suivant →</span><strong>{{ nextTest.test.id }}</strong></a> }</div>
     </nav>
   </article>
 } @else {

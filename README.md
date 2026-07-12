@@ -8,6 +8,7 @@ Le projet sert des pages de test statiques : chaque page reproduit volontairemen
 
 - `Assistant-Audit-RGAA` contient le moteur d'audit, l'orchestrateur et les scripts de critères.
 - `Assistant Tests RGAA` expose des pages de recette consultables dans le navigateur ou auditables par `Assistant-Audit-RGAA`.
+- Le backend FastAPI expose Swagger pour retrouver ou ouvrir une page de test à partir d'un critère.
 - La logique cible est : **1 test RGAA = 1 page de recette = 1 composant/script front**.
 
 ## Organisation
@@ -16,6 +17,11 @@ Le projet sert des pages de test statiques : chaque page reproduit volontairemen
 .
 ├── docker-compose.yml
 └── src/
+    ├── backend_tests_rgaa/
+    │   ├── app/
+    │   │   └── main.py
+    │   ├── Dockerfile
+    │   └── requirements.txt
     └── frontend_tests_rgaa/
         ├── Dockerfile
         ├── nginx.conf
@@ -26,16 +32,29 @@ Le projet sert des pages de test statiques : chaque page reproduit volontairemen
             ├── core/
             │   ├── home/          # Accueil et liste des tests
             │   └── shared/        # Composants réutilisables
-            ├── pages/
-            │   └── test-rgaa/     # Route dynamique + pages de recette RGAA
-            │       └── criteres_rgaa/
-            │           └── critere_X_Y/
-            │               └── test_X_Y_Z/
-            │                   ├── assets/ # Assets propres au test
-            │                   └── test-X-Y-Z-content.component.*
+            └── pages/
+                └── test-rgaa/     # Route dynamique + pages de recette RGAA
+                    └── criteres_rgaa/
 ```
 
 L'arborescence `pages/test-rgaa/criteres_rgaa/critere_X_Y/test_X_Y_Z/` est volontairement calquée sur `RGAA/src/backend_rgaa/scripts/criteres_rgaa/critere_X_Y/test_X_Y_Z.py`.
+
+## Services
+
+| Service | Conteneur | URL |
+|---|---|---|
+| Frontend Angular | `frontend-tests-rgaa` | `http://localhost:4212` |
+| Backend FastAPI / Swagger | `backend-tests-rgaa` | `http://localhost:8212/docs` |
+
+## Ouvrir une page depuis Swagger
+
+Depuis `http://localhost:8212/docs` :
+
+- `GET /resolve?critere=1.1.1` retourne l'URL de la page.
+- `GET /open?critere=1.1.1` redirige vers la page de test.
+- `GET /open-link?critere=1.1.1` retourne une page HTML qui ouvre la cible dans un nouvel onglet avec lien de secours.
+
+Le paramètre `critere` accepte `1.1.1`, `1-1-1` ou un critère comme `1.1`.
 
 ## Tests actuellement présents
 
@@ -66,16 +85,15 @@ Depuis la racine du projet :
 docker compose up -d --build
 ```
 
-Le conteneur normalisé est `frontend-tests-rgaa` et le site est exposé sur `http://localhost:4212`.
-
 ## Ajouter une page de recette
 
 1. Ajouter le test dans `src/frontend_tests_rgaa/src/app/data/rgaa.data.ts` avec son `id` et son `slug`.
-2. Créer le dossier miroir : `pages/test-rgaa/criteres_rgaa/critere_X_Y/test_X_Y_Z/`.
-3. Ajouter le composant de recette dans ce dossier.
-4. Placer les images, iframes ou fichiers nécessaires dans `assets/` au sein du dossier du test.
-5. Importer le composant dans `pages/test-rgaa/test-page.component.ts` et l'afficher pour l'identifiant concerné.
-6. Lancer `npm run build` puis, si besoin, `docker compose up -d --build`.
+2. Ajouter le test dans le catalogue du backend `src/backend_tests_rgaa/app/main.py`.
+3. Créer le dossier miroir : `pages/test-rgaa/criteres_rgaa/critere_X_Y/test_X_Y_Z/`.
+4. Ajouter le composant de recette dans ce dossier.
+5. Placer les images, iframes ou fichiers nécessaires dans `assets/` au sein du dossier du test.
+6. Importer le composant dans `pages/test-rgaa/test-page.component.ts` et l'afficher pour l'identifiant concerné.
+7. Lancer `npm run build` puis, si besoin, `docker compose up -d --build`.
 
 ## Intégration Portail
 
@@ -83,4 +101,4 @@ Le projet est déclaré dans `00_Portail` pour pouvoir être démarré, arrêté
 
 ## État du projet
 
-Le projet est un socle de recette front. Il ne contient pas de backend ni de base de données. Les résultats d'audit sont produits par `Assistant-Audit-RGAA`, qui peut crawler ou cibler les routes exposées ici.
+Le projet est un socle de recette front avec un backend utilitaire sans base de données. Les résultats d'audit sont produits par `Assistant-Audit-RGAA`, qui peut crawler ou cibler les routes exposées ici.

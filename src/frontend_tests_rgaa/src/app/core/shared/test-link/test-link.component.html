@@ -1,1 +1,1 @@
-<a [routerLink]="['/tests', test.slug]"><span>{{ test.title }}</span><app-status-badge [status]="test.status" /></a>
+<a [href]="'/tests/' + test.slug" target="_blank" rel="noopener"><span>{{ test.title }}</span><app-status-badge [status]="test.status" /></a>

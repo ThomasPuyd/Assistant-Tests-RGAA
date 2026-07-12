@@ -13,6 +13,8 @@ npm test
 
 `npm start` expose l'application sur `http://localhost:4212`.
 
+Le bouton `Swagger` du header pointe vers le backend FastAPI exposé sur `http://localhost:8212/docs` quand l'application est lancée avec Docker Compose.
+
 ## Structure applicative
 
 ```text

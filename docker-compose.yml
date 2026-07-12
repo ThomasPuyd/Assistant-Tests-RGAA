@@ -1,6 +1,23 @@
 name: tests-rgaa
 
 services:
+  backend:
+    container_name: backend-tests-rgaa
+    build:
+      context: ./src/backend_tests_rgaa
+      dockerfile: Dockerfile
+    environment:
+      FRONTEND_BASE_URL: http://localhost:4212
+    ports:
+      - "8212:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
   frontend:
     container_name: frontend-tests-rgaa
     build:

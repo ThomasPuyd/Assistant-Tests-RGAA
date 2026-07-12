@@ -30,7 +30,7 @@ export class TestPageComponent {
       const index = located ? ALL_TESTS.findIndex(item => item.test.slug === located.test.slug) : -1;
       this.previous.set(index > 0 ? ALL_TESTS[index - 1] : undefined);
       this.next.set(index >= 0 && index < ALL_TESTS.length - 1 ? ALL_TESTS[index + 1] : undefined);
-      this.title.setTitle(located ? `${located.test.title} - Qualit’RGAA` : 'Test introuvable - Qualit’RGAA');
+      this.title.setTitle(located ? `${located.test.title} - Assistant Tests RGAA` : 'Test introuvable - Assistant Tests RGAA');
     });
   }
 }
